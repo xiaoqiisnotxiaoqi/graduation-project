@@ -1,0 +1,26 @@
+spring:
+  application:
+    name: itoken-eureka
+
+server:
+  port: 8761
+
+eureka:
+  instance:
+    hostname: host
+  client:
+    # 表示是否将自己注册到Eureka，运维要构建集群环境，所以开启
+    registerWithEureka: true
+    # 表示是否从Eureka 获取注册信息，如果是单一节点，不需要同步其他的Eureka ，为false。单此处为集群
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://192.168.114.131:8761/eureka/,http://192.168.114.131:8861/eureka/,http://192.168.114.131:8961/eureka/
+
+management:
+  endpoint:
+    health:
+      show-details: always
+  endpoints:
+    web:
+      exposure:
+        include: health,info
